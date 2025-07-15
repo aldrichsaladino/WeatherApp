@@ -11,9 +11,14 @@ function getWeatherData(location) {
     const api_key = ''
     const api_url = ''
 
-    const response = await fetch(api_url)
-    const data = await response.json()
-    console.log(data);
+    // Try is used to catch any errors that may occur during the fetch request
+    try {
+        const response = await fetch(api_url)
+        const data = await response.json()
+        const weatherData - processWeatherData(data)
+        console.log(data);
+        displayWeatherData(weatherData);
+    }
 
 // Aka check fetch the data from the api, and then log it in the console. Await is used to wait for the API before logging
 }
@@ -29,7 +34,16 @@ form.addEventListener('submit', function(event) {
     getWeatherData(location); // Call the function to get weather data
 })
 // Process Weather Data from Form
-function processWeatherData {
+function processWeatherData (data){
+    //Return specific criteria and data from the API
+    return {
+        location: data.location.name,
+        region: data.location.region,
+        country: data.location.country,
+        temperature: data.current.temperature,
+        condition: data.current.condition.text,
+        icon: data.current.condition.icon,
+    };
 
 
 }
