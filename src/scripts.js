@@ -15,7 +15,7 @@ function getWeatherData(location) {
     try {
         const response = await fetch(api_url)
         const data = await response.json()
-        const weatherData - processWeatherData(data)
+        const weatherData = processWeatherData(data)
         console.log(data);
         displayWeatherData(weatherData);
     }
@@ -50,7 +50,13 @@ function processWeatherData (data){
 
 
 // Display Weather Data in HTML
-function displayWeatherData {
-
+function displayWeatherData (weatherData) {
+// get the weather element for html
+const weatherDisplay = document.getElementById('weatherDisplay');
+weatherDisplay.innerHTML = 
+    '<h2>Weather in $(weatherData.location), $(weatherData.region), $(weatherData.country)</h2>' +
+    '<p>Temperature: $(weatherData.temperature)°C</p>' +
+    '<p>Condition: $(weatherData.condition)</p>' +
+    '<img src="$(weatherData.icon)" alt="Weather Icon">';
 
 }
