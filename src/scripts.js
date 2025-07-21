@@ -46,11 +46,16 @@ form.addEventListener('submit', function(event) {
 // Process Weather Data from Form
 function processWeatherData (data){
     //Return specific criteria and data from the API
+    console.log(data);
     return {
         location: data.resolvedAddress,
         temperature: data.currentConditions.temp,
         condition: data.currentConditions.conditions,
-        icon: data.currentConditions.icon
+        icon: data.currentConditions.icon,
+
+        //Secondary display data
+        tempMax: data.days[0].tempmax,
+        tempMin: data.days[0].tempmin
     };
 
 
@@ -82,7 +87,6 @@ weatherDisplay.innerHTML = `
 //add another function for another API call to get the 7 day forecast
 async function get7DayForecast(location) {
     const api_key = 'R5ZB3BXVZGWU6SLYGV94GL4NS';
-    const api_url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${encodeURIComponent(location)}?unitGroup=metric&include=days&key=${api_key}`;
     const api_url_7_day = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${encodeURIComponent(location)}?key=$api_key}`;
 
     // Try is used to catch any errors that may occur during the fetch request
@@ -107,6 +111,7 @@ async function get7DayForecast(location) {
 // Process 7 Day Forecast Data
 function processForecastData(data) {
     // Return specific criteria and data from the API
+    //map through days in data since they're the same structure. We add them into an array using the map function
     return data.days.map(day => ({
         date: day.datetime,
         condition: day.conditions,
