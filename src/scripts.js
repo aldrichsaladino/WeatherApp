@@ -27,14 +27,14 @@ async function getWeatherData(location) {
         console.log(data);
 
 
-        const todayWeather = processWeatherData(data)
+        const todayWeather = processWeatherData(data);
         displayWeatherData(todayWeather);
 
-        const forecast = processForecastData(data)
-        displayWeatherData(forecast);
+        const forecast = processForecastData(data);
+        displayForecastData(forecast);
 
-        const extra = processExtraData(data)
-        displayWeatherData(extra);       
+        const extra = processExtraData(data);
+        displayExtraData(extra);       
 
         //If  the error in location, log the error message
     } catch (error) {
