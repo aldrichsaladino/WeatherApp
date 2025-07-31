@@ -89,19 +89,18 @@ function displayWeatherData (weatherData) {
 
 // Update the inner HTML of the weatherDisplay element with the weather data
     weatherDisplay.innerHTML = `
-        <h2>Today's Weather in ${weatherData.location}</h2>
-        <p>Condition: ${weatherData.condition}</p>
-        <p>Temperature: ${weatherData.temperature}°C</p>
-        <P>Today's High: ${weatherData.tempMax}°C</P>
-        <P>Today's Low: ${weatherData.tempMin}°C</P>
-        <img src="${weatherData.icon}" alt="Weather Icon">
-    `;
+    <h2>Today's Weather in ${weatherData.location}</h2>
+    <p style="font-size: 1.25rem; font-weight: bold;">${weatherData.condition}</p>
+    <p style="font-size: 3rem;">${weatherData.temperature}°C</p>
+    <p style="margin-top: 1rem;">High: ${weatherData.tempMax}°C &nbsp;|&nbsp; Low: ${weatherData.tempMin}°C</p>
+    <img src="${weatherData.icon}" alt="Weather Icon">
+`;
+
 };
 
 //add another function to display the 7 day forecast data in the HTML
 function displayForecastData(forecastData) {
     const forecastDisplay = document.getElementById('forecastDisplay');
-    forecastDisplay.innerHTML = '<h2>7-Day Forecast</h2>';
 
     forecastData.forEach(day => {
         forecastDisplay.innerHTML += `
@@ -121,10 +120,10 @@ function displayExtraData(extraData) {
     const extraDisplay = document.getElementById('extraDisplay');
     extraDisplay.innerHTML = `
         <h2>Additional Information</h2>
-        <p>Wind Speed: ${extraData.windSpeed} km/h</p>
-        <p>Humidity: ${extraData.humidity}%</p>
-        <p>Pressure: ${extraData.pressure} hPa</p>
-        <p>Visibility: ${extraData.visibility} km</p>
+        <p><strong>Wind Speed: ${extraData.windSpeed} km/h</p>
+        <p><strong>Humidity: ${extraData.humidity}%</p>
+        <p><strong>Pressure: ${extraData.pressure} hPa</p>
+        <p><strong>Visibility: ${extraData.visibility} km</p>
     `;
 };
 

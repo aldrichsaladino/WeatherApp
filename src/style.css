@@ -1,18 +1,123 @@
-/* Styles for the Weather App */
+/* Global Reset */
+@import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap');
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: url('https://i.imgur.com/L0F6vSU.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    color: #ffffff;
+    text-align: center;
+    padding: 2rem;
+}
 
+/* Header */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #e0f7fa;
+}
 
-/* General styles */
+form {
+    margin-bottom: 2rem;
+}
 
+input[type="text"] {
+    padding: 10px;
+    width: 200px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+}
 
+button {
+    padding: 10px 16px;
+    font-size: 1rem;
+    background-color: #f9c11c;
+    color: #1c2c3f;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-left: 10px;
+    font-weight: bold;
+}
 
+button:hover {
+    background-color: #e0a800;
+}
 
-/*Weathger Form*/
+/* App Container */
+#appContainer {
+    max-width: 1000px;
+    margin: 0 auto;
+}
 
+/* Main Current Weather Card */
+.weather-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 600px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
 
+.weather-card img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+}
 
-/*Container for Weather App*/
+.weather-card h2 {
+    margin-bottom: 1rem;
+}
 
+/* Forecast Section */
+.forecast-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
 
+.forecast-day {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    width: 130px;
+    text-align: center;
+    color: #fff;
+}
 
-/*Footer styles*/
+.forecast-day img {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 0.5rem;
+}
 
+.forecast-day h3 {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+}
+
+/* Extra Information Card */
+.extra-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem auto;
+    max-width: 600px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+.extra-card p {
+    margin: 0.5rem 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .forecast-day {
+        width: 45%;
+    }
+}

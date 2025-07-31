@@ -13,9 +13,19 @@
         <input type="text" id="locationInput" placeholder="Enter a location" required>
         <button type="submit">Get Weather</button>
     </form>
+    
+    <!--Sections for each API Pull -->
+<div id="appContainer">
+    <section id="weatherDisplay" class="weather-card"></section>
 
-    <div id="weatherDisplay"></div>
-    <div id="forecastDisplay"></div>
-    <div id="extraDisplay"></div>
+    <div class="flex-row">
+        <section class="extra-card" id="extraDisplay"></section>
+        <section class="forecast-wrapper">
+            <h2>7-Day Forecast</h2>
+            <div id="forecastDisplay" class="forecast-container"></div>
+        </section>
+    </div>
+</div>
+
 </body>
 </html>
