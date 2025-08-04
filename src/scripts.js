@@ -101,15 +101,16 @@ function displayWeatherData (weatherData) {
 //add another function to display the 7 day forecast data in the HTML
 function displayForecastData(forecastData) {
     const forecastDisplay = document.getElementById('forecastDisplay');
+    forecastDisplay.innerHTML = ''; // Clear previous forecast data
 
     forecastData.forEach(day => {
         forecastDisplay.innerHTML += `
             <div class="forecast-day">
                 <h3>${day.date}</h3>
-                <p>Condition: ${day.condition}</p>
+                <img src="${day.icon}" alt="Weather Icon">
+                <p><strong>Condition: ${day.condition}</strong></p>
                 <p>High: ${day.high}°C</p>
                 <p>Low: ${day.low}°C</p>
-                <img src="${day.icon}" alt="Weather Icon">
             </div>
         `;
     });
