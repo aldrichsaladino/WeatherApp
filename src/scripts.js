@@ -44,7 +44,7 @@ async function getWeatherData(location) {
         const extra = processExtraData(data);
         displayExtraData(extra);
 
-        updateRadarMap(location); //included a map based on the location
+        updateRadarMap(data.latitude, data.longitude); // Pass actual coords
         setBackgroundImage(location);                           
 
         //If  the error in location, log the error message
@@ -80,7 +80,8 @@ function processForecastData(data) {
         condition: day.conditions,
         high: day.tempmax,
         low: day.tempmin,
-        precipProb: data.currentConditions.precipprob,
+        precipProb: day.precipprob,
+        // Use the icon from the day object, formatted to match the URL structure
         icon: `https://raw.githubusercontent.com/visualcrossing/WeatherIcons/main/PNG/1st%20Set%20-%20Color/${day.icon}.png`
 }));
 
@@ -138,7 +139,8 @@ function displayForecastData(forecastData) {
                 <p><strong>Condition: ${day.condition}</strong></p>
                 <p>High: ${day.high}°C</p>
                 <p>Low: ${day.low}°C</p>
-                <p>Precipitation: ${day.precip}%</p>
+                <p>Precipitation: ${day.precipProb}%</p>
+
             </div>
         `;
     });
@@ -151,27 +153,27 @@ function displayExtraData(extraData) {
         <h2>Additional Information</h2>
 
         <div class="info-item">
-            <img src="icons/wind.png" alt="Wind Icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/481/481106.png" alt="Wind Icon" />
             <p><strong>Wind Speed:</strong> ${extraData.windSpeed} km/h</p>
         </div>
 
         <div class="info-item">
-            <img src="icons/humidity.png" alt="Humidity Icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/728/728093.png" alt="Humidity Icon">
             <p><strong>Humidity:</strong> ${extraData.humidity}%</p>
         </div>
 
         <div class="info-item">
-            <img src="icons/pressure.png" alt="Pressure Icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/777/777759.png" alt="Pressure Icon">
             <p><strong>Pressure:</strong> ${extraData.pressure} hPa</p>
         </div>
 
         <div class="info-item">
-            <img src="icons/visibility.png" alt="Visibility Icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/2922/2922730.png" alt="Visibility Icon">
             <p><strong>Visibility:</strong> ${extraData.visibility} km</p>
         </div>
 
         <div class="info-item">
-            <img src="icons/precip.png" alt="Precipitation Icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/1163/1163624.png" alt="Precipitation Icon">
             <p><strong>Precipitation Chance:</strong> ${extraData.precipProb}%</p>
         </div>
     `;
@@ -179,7 +181,7 @@ function displayExtraData(extraData) {
 
 function displayHourlyForecast(hourlyData) {                
   const hourlyDisplay = document.getElementById('hourlyForecastDisplay');
-  hourlyDisplay.innerHTML = '<h2>Hourly Forecast</h2>';
+  hourlyDisplay.innerHTML = '';
 
   hourlyData.forEach(hour => {
     hourlyDisplay.innerHTML += `
@@ -193,15 +195,11 @@ function displayHourlyForecast(hourlyData) {
   });
 }
 
-function updateRadarMap(location) {                       
-  const radarContainer = document.getElementById('radarMapContainer');
-  radarContainer.innerHTML = `
-    <iframe
-      src="https://embed.windy.com/embed2.html?lat=50&lon=-114&detailLat=50&detailLon=-114&width=650&height=450&zoom=5"
-      frameborder="0"
-    ></iframe>
-  `;
+function updateRadarMap(lat, lon) {                       
+    const radarFrame = document.getElementById('radarMap'); // Match your iframe ID
+    radarFrame.src = `https://embed.windy.com/embed2.html?lat=${lat}&lon=${lon}&detailLat=${lat}&detailLon=${lon}&zoom=6&level=surface&overlay=radar&product=ecmwf`;
 }
+
 
 function setBackgroundImage(location) {
   const encodedLocation = encodeURIComponent(location.trim());
@@ -223,3 +221,10 @@ form.addEventListener('submit', function(event) {
     }
     console.log(`Fetching weather data for: ${location}`);
 })
+
+//Have a default location to display weather data when the page loads
+window.addEventListener('DOMContentLoaded', function() {
+    const defaultLocation = 'Calgary, Canada'; // Default location
+    input.value = defaultLocation; // Set the input value to the default location
+    getWeatherData(defaultLocation); // Fetch weather data for the default location
+});

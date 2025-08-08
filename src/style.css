@@ -1,230 +1,225 @@
 @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap');
 
-/* RESET & GLOBAL */
+/* GLOBAL RESET */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    background-image: url('https://images.unsplash.com/photo-1580193483760-d0ef2abaa348?q=80&w=3174&auto=format&fit=crop');
-    background-size: cover;
-    background-position: center;
-    font-family: 'Segoe UI', sans-serif;
-    color: white;
+  font-family: 'Segoe UI', sans-serif;
+  color: #ffffff;
+  background-image: url('https://images.unsplash.com/photo-1580193483760-d0ef2abaa348?q=80&w=3174&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* NAVBAR */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #1c1f26;
-    padding: 1rem 2rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1c1f26;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
 }
 
 .logo {
-    font-size: 1.8rem;
-    color: #f9c11c;
-    font-weight: 600;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #f9c11c;
 }
 
 .search-form {
-    display: flex;
-    gap: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
 }
 
 input[type="text"] {
-    padding: 10px;
-    width: 250px;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
+  padding: 10px;
+  width: 250px;
+  border-radius: 6px;
+  font-size: 1rem;
+  border: none;
 }
 
 button {
-    padding: 10px 16px;
-    font-size: 1rem;
-    background-color: #f9c11c;
-    color: #1c2c3f;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
+  padding: 10px 16px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  background-color: #f9c11c;
+  color: #1c2c3f;
+  border: none;
+  cursor: pointer;
 }
 
 button:hover {
-    background-color: #e0a800;
+  background-color: #e0a800;
 }
 
-/* MAIN APP CONTAINER */
+/* MAIN LAYOUT */
 .container {
-    max-width: 1100px;
-    margin: 2rem auto;
-    padding: 0 1rem;
+  width: 90%;
+  margin: 2rem auto;
+  padding: 0 auto;
 }
 
-/* CURRENT WEATHER CARD */
-.weather-card {
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 15px;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-    text-align: left;
+.flex-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
 }
 
-.weather-card h2 {
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
+/* SECTION STYLING */
+section {
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  margin-bottom: 2rem;
 }
 
+/* WEATHER DISPLAY */
 .weather-card .temp {
-    font-size: 3rem;
-    font-weight: bold;
-    margin: 0.5rem 0;
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
 }
 
 .weather-card img {
-    width: 60px;
-    height: 60px;
-    vertical-align: middle;
+  width: 60px;
+  height: 60px;
 }
 
-/* EXTRA INFO & FORECAST CONTAINER */
-.flex-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: space-between;
-}
-
+/* EXTRA DATA */
 .extra-card {
-    flex: 1;
-    background-color: rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  flex: 1;
 }
 
 .extra-card h2 {
-    margin-bottom: 1rem;
-    color: #f0f0f0;
+  margin-bottom: 1rem;
 }
 
-.extra-card p {
-    margin: 0.5rem 0;
-}
-
-/* DAILY FORECAST SECTION */
-.forecast-wrapper {
-    flex: 2;
-}
-
-.forecast-wrapper h2 {
-    margin-bottom: 1rem;
-}
-
-.forecast-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.forecast-day {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 1rem;
-    border-radius: 10px;
-    width: 120px;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.forecast-day img {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 0.5rem;
-}
-
-/* ICON INFO ROW */
 .info-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-    color: white;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
 }
 
 .info-item img {
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
 }
 
-/* NEW: HOURLY FORECAST SECTION */
-.forecast-card {
-    background-color: rgba(0, 0, 0, 0.4);
-    border-radius: 15px;
-    padding: 1.5rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+/* FORECASTS */
+.forecast-wrapper {
+  flex: 2;
 }
 
+.forecast-wrapper h2 {
+  margin-bottom: 1rem;
+}
+
+.forecast-container {
+  display: grid; /* Use grid for better layout control. It'll be fixed and set */
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* Responsive columns */
+  gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.forecast-day {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  min-width: 140px;
+  max-width: 250px;
+  min-height: 150px;
+}
+
+.forecast-day img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 0.5rem;
+}
+
+/* HOURLY FORECAST */
 .forecast-card h2 {
-    margin-bottom: 1rem;
-    text-align: center;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 #hourlyForecastDisplay {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    gap: 1rem;
-    padding: 1rem 0;
+  display: flex;
+  flex-wrap: nowrap; /* Prevent wrapping */
+  overflow-x: auto;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  /*Add scroll*/
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: #f9c11c transparent;
 }
 
 .hourly-forecast-hour {
-    min-width: 100px;
+    min-width: 140px; /* wider for consistency */
+    flex: 0 0 auto;    /* prevents resizing or wrapping */
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
-    padding: 0.5rem;
+    padding: 0.75rem;
     text-align: center;
-    flex-shrink: 0;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* NEW: RADAR SECTION */
+.hour-card {
+  min-width: 160px;
+  max-width: 220px;
+  height: auto;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  text-align: center;
+  padding: 0.75rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  color: #fff;
+}
+
+/* RADAR MAP */
 .radar-card {
-    background-color: rgba(0, 0, 0, 0.4);
-    border-radius: 15px;
-    padding: 2rem;
-    margin: 2rem auto;
-    max-width: 1100px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  text-align: center;
 }
 
 .radar-card h2 {
-    text-align: center;
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
+
+section,
+.weather-card,
+.forecast-card,
+.radar-card {
+  width: 100%;
+}
+
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-    .flex-row {
-        flex-direction: column;
-    }
+  .flex-row {
+    flex-direction: column;
+  }
 
-    .forecast-day {
-        width: 100%;
-    }
+  input[type="text"] {
+    width: 80%;
+  }
 
-    input[type="text"] {
-        width: 80%;
-    }
-
-    #hourlyForecastDisplay {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+  .forecast-day,
+  .hour-card {
+    width: 100%;
+  }
 }
