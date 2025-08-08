@@ -100,15 +100,26 @@ function processExtraData(data) {
     }
 }
 
-function processHourlyForecast(data) {                   
-  return data.days[0].hours.slice(0, 12).map(hour => ({
-    time: hour.datetime,
-    temp: hour.temp,
-    feelslike: hour.feelslike,
-    precip: hour.precipprob,
-    icon: `https://raw.githubusercontent.com/visualcrossing/WeatherIcons/main/PNG/1st%20Set%20-%20Color/${hour.icon}.png`
-  }));
+function processHourlyForecast(data) {   
+    const now = new Date();
+    const currentHour = now.getHours(); 
+    let next12Hours = data.days[0].hours.slice(currentHour, currentHour + 12);
+
+    if (next12Hours.length < 12 && data.days.length > 1) {
+        const remaining = 12 - next12Hours.length;
+        const fromNextDay = data.days[1].hours.slice(0, remaining);
+        next12Hours.push(...fromNextDay);
+    }
+
+    return next12Hours.map(hour => ({
+        time: hour.datetime,
+        temp: hour.temp,
+        feelslike: hour.feelslike,
+        precip: hour.precipprob,
+        icon: `https://raw.githubusercontent.com/visualcrossing/WeatherIcons/main/PNG/1st%20Set%20-%20Color/${hour.icon}.png`
+    }));
 }
+
 
 
 //Display Data
