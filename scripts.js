@@ -202,9 +202,21 @@ function updateRadarMap(lat, lon) {
 
 
 function setBackgroundImage(location) {
-  const encodedLocation = encodeURIComponent(location.trim());
-  document.body.style.backgroundImage = `url('https://source.unsplash.com/1600x900/?${encodedLocation},weather')`;
+  const fallbackImage = "https://images.unsplash.com/photo-1580193483760-d0ef2abaa348?auto=format&fit=crop&w=1600&q=80";
+
+  const img = new Image();
+  img.onload = () => {
+    document.body.style.backgroundImage = `url('${fallbackImage}')`;
+  };
+  img.onerror = () => {
+    console.warn("Image failed to load.");
+    document.body.style.backgroundImage = "#333"; // fallback background
+  };
+  img.src = fallbackImage;
 }
+
+
+
 
 
 
@@ -222,9 +234,12 @@ form.addEventListener('submit', function(event) {
     console.log(`Fetching weather data for: ${location}`);
 })
 
+
 //Have a default location to display weather data when the page loads
 window.addEventListener('DOMContentLoaded', function() {
     const defaultLocation = 'Calgary, Canada'; // Default location
+
     input.value = defaultLocation; // Set the input value to the default location
+    setBackgroundImage(defaultLocation); // e.g. "Calgary"
     getWeatherData(defaultLocation); // Fetch weather data for the default location
 });
